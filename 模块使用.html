@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+ 
+<!-- 你的HTML代码 -->
+ 
+<script src="./layui/layui.js"></script>
+<script>
+
+/**
+ * 使用自定义模块
+ */
+// 配置自定义模块。config的设置是全局的,也就是说所有的模块到要在配置的layui下
+layui.config({
+  base: 'layui/' // 放置扩展的根目录
+}).extend({
+  test: 'mymodules/test/test', // 相对于base根目录，配置到对应的js文件，key = 模块中export的模块名  
+  bunao: 'mymodules/test/bunao', 
+});
+ 
+// 使用自定义模块
+layui.use(['test', 'bunao'], function(){
+  var test = layui.test;
+  
+  // test.hello('World!'); //弹出Hello World!
+
+  var bunao = layui.bunao;
+  bunao.hello();
+});
+
+/**
+ * 使用自带模块
+ */
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  layer.msg('Hello World');
+});
+</script> 
+</body>
+</html>
